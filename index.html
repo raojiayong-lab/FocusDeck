@@ -520,8 +520,12 @@ body.desktop .desk-only.set{display:flex;}
 @keyframes itemIn{from{opacity:0;transform:translateY(-8px) scale(.96);}to{opacity:1;transform:none;}}
 @keyframes checkPop{0%{transform:scale(.6);}55%{transform:scale(1.25);}100%{transform:scale(1);}}
 /* 拖拽落点：目标事件轻轻弹入，给明确的“放下了”反馈 */
-.sched .ev.ev-land{animation:evLand .3s cubic-bezier(.34,1.4,.5,1);}
+.sched .ev.ev-land{animation:evLand .3s cubic-bezier(.4,0,.2,1);}
 @keyframes evLand{0%{transform:scale(.5);opacity:0;box-shadow:0 0 0 6px var(--mode-glow);}60%{transform:scale(1.08);}100%{transform:none;opacity:1;box-shadow:0 5px 14px color-mix(in srgb,var(--mode-glow) 46%,transparent);}}
+/* 概览 7 日柱图：从底部丝滑长出 */
+@keyframes ovBarGrow{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+/* 弹窗遮罩淡入 */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 /* 尊重系统“减少动态效果”偏好：关闭装饰性动画与过渡，保留可用性 */
 @media (prefers-reduced-motion: reduce){
@@ -535,7 +539,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .todo-editor{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;}
 .todo-editor[hidden]{display:none;}
 .te-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);}
-.te-box{position:relative;width:min(420px,86vw);background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:7px;}
+.te-box{position:relative;width:min(420px,86vw);background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:7px;animation:popIn .26s cubic-bezier(.2,.8,.3,1);}
 .te-title{font-weight:700;font-size:14px;margin-bottom:2px;}
 .te-label{font-size:11px;color:var(--text-dim);margin-top:4px;}
 .te-input,.te-note{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:9px;color:var(--text);padding:8px 10px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box;}
@@ -688,7 +692,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .ring-wrap{display:flex;align-items:center;gap:18px;}
 .ring-svg{width:104px;height:104px;flex:none;}
 .ring-svg .rb{fill:none;stroke:var(--border);stroke-width:10;}
-.ring-svg .rf{fill:none;stroke:var(--mode-accent);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 6px var(--mode-glow));}
+.ring-svg .rf{fill:none;stroke:var(--mode-accent);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1),stroke .4s ease,filter .4s ease;filter:drop-shadow(0 0 6px var(--mode-glow));}
 .ring-txt b{display:block;font-size:22px;color:var(--text);font-weight:800;}
 .ring-txt{font-size:13px;color:var(--text-dim);}
 /* 鼠标自动选择高亮（focus-follows-cursor，仅导航页签触发；内容卡仅做悬停微交互） */
@@ -749,10 +753,10 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .sched .nowline::before{content:'现在';position:absolute;left:0;top:-15px;font-size:9px;color:#ff5630;font-weight:700;background:var(--bg);padding:0 4px;border-radius:6px;}
 
 /* 日程事件详情弹窗（点击事件查看/编辑信息） */
-.ev-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:600;background:rgba(8,10,16,.62);}
+.ev-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:600;background:rgba(8,10,16,.62);animation:fadeIn .2s ease;}
 .ev-modal[hidden]{display:none;}
 .ev-backdrop{position:absolute;inset:0;cursor:default;}
-.ev-box{width:330px;max-width:92vw;padding:20px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--surface-2) 80%,transparent);border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.ev-box{width:330px;max-width:92vw;padding:20px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--surface-2) 80%,transparent);border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.5);animation:popIn .26s cubic-bezier(.2,.8,.3,1);}
 .ev-box .ev-meta{font-size:12px;color:var(--text-dim);font-weight:700;letter-spacing:.4px;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
 .ev-box .ev-dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));flex:none;box-shadow:0 0 8px var(--mode-glow);}
 .ev-box .ev-label{font-size:12px;color:var(--text-dim);margin:10px 0 5px;font-weight:700;}
@@ -1318,10 +1322,10 @@ function renderOvChart7(){
     if (v>max) max=v;
     return {k:k, v:v, label:['日','一','二','三','四','五','六'][d.getDay()]};
   });
-  box.innerHTML = data.map(function(x){
+  box.innerHTML = data.map(function(x, idx){
     var h = Math.round(x.v/max*100);
     return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:74px">'+
-      '<div style="width:60%;max-width:30px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--mode-accent),var(--mode-glow));min-height:2px;height:'+h+'%;transition:height .35s cubic-bezier(.4,0,.2,1)"></div>'+
+      '<div style="width:60%;max-width:30px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--mode-accent),var(--mode-glow));min-height:2px;height:'+h+'%;transform-origin:bottom;animation:ovBarGrow .5s cubic-bezier(.4,0,.2,1) '+(idx*0.05)+'s both"></div>'+
       '<span style="font-size:10px;color:var(--text-dim)">'+x.label+'</span></div>';
   }).join('');
 }
