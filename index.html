@@ -149,6 +149,7 @@ html.no-color-mix .app{background:var(--surface);border:1px solid var(--border);
 .ib:active{transform:scale(.9);}
 .ib.on{background:var(--mode-glow);color:var(--mode-accent);}
 .ib.zoomlabel{font-size:10px;font-variant-numeric:tabular-nums;min-width:38px;}
+#maxBtn{font-size:13px;}
 
 /* ===== 迷你条 ===== */
 html[data-size="xs"] .brand-txt,
@@ -785,6 +786,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
     <button class="ib" id="themeBtn" title="切换主题">🌓</button>
     <button class="ib" id="miniBtn" title="迷你模式">◰</button>
     <button class="ib desk-only" id="minBtn" title="最小化">_</button>
+    <button class="ib desk-only" id="maxBtn" title="最大化/还原">⛶</button>
     <button class="ib desk-only" id="closeBtn" title="关闭">✕</button>
   </header>
 
@@ -2468,6 +2470,15 @@ function syncSize(){
     if (document.documentElement.getAttribute('data-size') !== s)
       document.documentElement.setAttribute('data-size', s);
     if (!isDesktop() && h) { /* 浏览器模式无额外处理 */ }
+    updateMaxBtn();
+  });
+}
+function updateMaxBtn(){
+  if (!isDesktop()) return;
+  api('is_maximized').then(function(on){
+    var b = $('#maxBtn'); if (!b) return;
+    b.title = on ? '还原' : '最大化';
+    b.textContent = on ? '🗗' : '⛶';
   });
 }
 
@@ -3215,6 +3226,7 @@ function bind(){
     toast(on ? '窗口已置顶' : '已取消置顶', '📌');
   });
   $('#minBtn').addEventListener('click', function(){ api('minimize'); });
+  $('#maxBtn').addEventListener('click', function(){ api('toggle_maximize'); });
   $('#closeBtn').addEventListener('click', closeApp);
 
   /* 本地音乐 */
