@@ -695,26 +695,30 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .mini-task.done .mtx{text-decoration:line-through;color:var(--text-dim);}
 .mini-empty{font-size:12px;color:var(--text-dim);padding:8px 2px;}
 /* 日程：课程表式周视图（清爽美化版） */
-.sched{position:relative;display:grid;grid-template-columns:56px repeat(7,1fr);grid-auto-rows:46px;gap:6px;overflow:auto;padding:9px;border-radius:26px;background:color-mix(in srgb,var(--surface-2) 16%,transparent);border:1px solid var(--border);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--surface-2) 22%,transparent);}
-.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:7px 0;border-radius:14px;z-index:3;display:flex;flex-direction:column;gap:2px;justify-content:center;transition:background .15s,color .15s;}
+.sched{position:relative;display:grid;grid-template-columns:56px repeat(7,1fr);grid-auto-rows:46px;gap:6px;overflow:auto;padding:9px;border-radius:26px;--sc:#3b82f6;background:color-mix(in srgb,#0a0c12 90%,transparent);border:1px solid var(--border);box-shadow:inset 0 0 0 1px color-mix(in srgb,#ffffff 06%,transparent);contain:paint;}
+.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:color-mix(in srgb,#ffffff 05%,transparent);padding:7px 0;border-radius:14px;z-index:3;display:flex;flex-direction:column;gap:2px;justify-content:center;transition:background .15s,color .15s;}
+.sched .sh.today{background:var(--sc);color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--sc) 45%,transparent);}
 .sched .sh .sd{font-size:12.5px;color:var(--text);font-weight:800;line-height:1;}
 .sched .sh .sdn{font-size:9px;color:var(--text-dim);line-height:1;}
 .sched .sh.today{background:color-mix(in srgb,var(--mode-accent) 20%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 40%,transparent);}
 .sched .sh.today .sd{color:var(--mode-accent);}
 .sched .sh-corner{background:transparent;}
 .sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-variant-numeric:tabular-nums;border-radius:12px;background:color-mix(in srgb,var(--surface-2) 30%,transparent);}
-.sched .cell{border-radius:16px;background:color-mix(in srgb,var(--surface-2) 32%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;position:relative;overflow:hidden;}
+.sched .cell{border-radius:16px;background:color-mix(in srgb,#ffffff 05%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;position:relative;overflow:hidden;}
 .sched .cell:hover{background:rgba(255,255,255,0.07);border-color:color-mix(in srgb,var(--mode-accent) 44%,var(--border));transform:translateY(-1px);}
 .sched .cell--weekend{background:color-mix(in srgb,var(--surface-2) 20%,transparent);}
 .sched .cell--today{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%,transparent);}
-.sched .cell-drop{outline:2px dashed var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 22%,transparent)!important;transform:none;}
-.sched .cell-swap{outline:2px solid var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 30%,transparent)!important;transform:none;}
-.sched .ev{position:absolute;inset:3px;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 5px 14px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;display:flex;align-items:center;transition:box-shadow .15s,transform .15s;}
-.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.7);border-radius:999px 0 0 999px;}
+.sched .cell-drop{outline:2px dashed var(--sc);outline-offset:-3px;background:color-mix(in srgb,var(--sc) 22%,transparent)!important;transform:none;}
+.sched .cell-swap{outline:2px solid var(--sc);outline-offset:-3px;background:color-mix(in srgb,var(--sc) 32%,transparent)!important;transform:none;}
+.sched .ev{position:absolute;inset:3px;border-radius:14px;padding:5px 10px 5px 13px;font-size:10.5px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:color-mix(in srgb,var(--sc) 30%,transparent);border:1px solid color-mix(in srgb,var(--sc) 55%,transparent);box-shadow:0 4px 12px rgba(0,0,0,.35);backdrop-filter:blur(6px);cursor:grab;user-select:none;display:flex;flex-direction:column;justify-content:center;gap:1px;transition:box-shadow .18s,transform .18s;}
+.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:color-mix(in srgb,var(--sc) 80%,#fff);border-radius:14px 0 0 14px;}
+.sched .ev .ev-time{font-size:9px;font-weight:500;color:rgba(255,255,255,.72);}
+.sched .ev.ev-drag{transform:scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,.55);z-index:60;}
 .sched .ev .ev-title{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;}
 .sched .ev:hover{transform:translateY(-1px);box-shadow:0 8px 20px color-mix(in srgb,var(--mode-glow) 56%,transparent);}
 .sched .ev.ev-drag{cursor:grabbing;box-shadow:0 16px 34px color-mix(in srgb,var(--mode-glow) 66%,transparent);opacity:.96;transform:scale(1.03);}
 .sched .nowline{position:absolute;left:70px;right:9px;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;z-index:2;pointer-events:none;display:none;}
+.sched .nowline::after{content:'现在';position:absolute;top:-9px;left:0;font-size:10px;font-weight:700;color:#ff5630;background:var(--bg);padding:0 4px;border-radius:6px;}
 .sched .nowline::before{content:'现在';position:absolute;left:0;top:-15px;font-size:9px;color:#ff5630;font-weight:700;}
 
 /* 日程事件详情弹窗（点击事件查看/编辑信息） */
@@ -1327,7 +1331,7 @@ function renderSchedule(){
     if (ev){
       var el = document.createElement('div');
       el.className = 'ev'; el.setAttribute('data-key', key);
-      el.innerHTML = '<span class="ev-title">'+fdEsc(evTitle(ev))+'</span>';
+      el.innerHTML = '<span class="ev-title">'+fdEsc(evTitle(ev))+'</span><span class="ev-time">'+fdEsc(schedLabel(key))+'</span>';
       c.appendChild(el);
       attachEventDrag(el, key);
     }
