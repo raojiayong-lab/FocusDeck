@@ -647,8 +647,6 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
   border-right:1px solid var(--border);
   box-shadow:1px 0 0 color-mix(in srgb,var(--mode-glow) 14%,transparent);
 }
-.rail .brand-mini{display:flex;align-items:center;gap:7px;font-weight:800;font-size:12px;letter-spacing:.5px;color:var(--text);padding:2px 4px 10px;white-space:nowrap;overflow:hidden;}
-.rail .brand-mini .brand-dot{width:9px;height:9px;flex:none;}
 .rail .sp{flex:1;}
 .rail .tab{
   flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
@@ -696,19 +694,42 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .mini-task.done .cbx{background:var(--mode-accent);border-color:var(--mode-accent);}
 .mini-task.done .mtx{text-decoration:line-through;color:var(--text-dim);}
 .mini-empty{font-size:12px;color:var(--text-dim);padding:8px 2px;}
-/* 日程：课程表式周视图 */
-.sched{display:grid;grid-template-columns:54px repeat(7,1fr);grid-auto-rows:36px;gap:4px;overflow:auto;padding-bottom:6px;}
-.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:2;}
-.sched .sh.today{color:var(--mode-accent);}
-.sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:6px;}
-.sched .cell{border-radius:10px;background:color-mix(in srgb,var(--surface-2) 38%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;position:relative;overflow:hidden;}
-.sched .cell:hover{background:rgba(255,255,255,0.07);border-color:color-mix(in srgb,var(--mode-accent) 42%,var(--border));}
-.sched .cell-drop{outline:2px dashed var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 18%,transparent)!important;}
-.sched .ev{position:absolute;inset:3px;border-radius:8px;padding:3px 8px;font-size:10px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 4px 12px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;}
-.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.65);border-radius:8px 0 0 8px;}
-.sched .ev.ev-drag{cursor:grabbing;box-shadow:0 14px 30px color-mix(in srgb,var(--mode-glow) 64%,transparent);opacity:.96;}
-.sched .nowline{grid-column:2 / span 7;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;position:relative;margin:0;}
-.sched .nowline::before{content:'现在';position:absolute;left:2px;top:-15px;font-size:9px;color:#ff5630;font-weight:700;}
+/* 日程：课程表式周视图（清爽美化版） */
+.sched{position:relative;display:grid;grid-template-columns:56px repeat(7,1fr);grid-auto-rows:46px;gap:5px;overflow:auto;padding-bottom:8px;}
+.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:7px 0;border-radius:12px;z-index:3;display:flex;flex-direction:column;gap:2px;justify-content:center;transition:background .15s,color .15s;}
+.sched .sh .sd{font-size:12.5px;color:var(--text);font-weight:800;line-height:1;}
+.sched .sh .sdn{font-size:9px;color:var(--text-dim);line-height:1;}
+.sched .sh.today{background:color-mix(in srgb,var(--mode-accent) 20%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 40%,transparent);}
+.sched .sh.today .sd{color:var(--mode-accent);}
+.sched .sh-corner{background:transparent;}
+.sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-variant-numeric:tabular-nums;}
+.sched .cell{border-radius:12px;background:color-mix(in srgb,var(--surface-2) 32%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;position:relative;overflow:hidden;}
+.sched .cell:hover{background:rgba(255,255,255,0.07);border-color:color-mix(in srgb,var(--mode-accent) 44%,var(--border));transform:translateY(-1px);}
+.sched .cell--weekend{background:color-mix(in srgb,var(--surface-2) 20%,transparent);}
+.sched .cell--today{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%,transparent);}
+.sched .cell-drop{outline:2px dashed var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 22%,transparent)!important;transform:none;}
+.sched .ev{position:absolute;inset:3px;border-radius:10px;padding:5px 10px;font-size:10.5px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 5px 14px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;display:flex;align-items:center;transition:box-shadow .15s,transform .15s;}
+.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.7);border-radius:10px 0 0 10px;}
+.sched .ev .ev-title{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;}
+.sched .ev:hover{transform:translateY(-1px);box-shadow:0 8px 20px color-mix(in srgb,var(--mode-glow) 56%,transparent);}
+.sched .ev.ev-drag{cursor:grabbing;box-shadow:0 16px 34px color-mix(in srgb,var(--mode-glow) 66%,transparent);opacity:.96;transform:scale(1.03);}
+.sched .nowline{position:absolute;left:56px;right:6px;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;z-index:2;pointer-events:none;display:none;}
+.sched .nowline::before{content:'现在';position:absolute;left:0;top:-15px;font-size:9px;color:#ff5630;font-weight:700;}
+
+/* 日程事件详情弹窗（点击事件查看/编辑信息） */
+.ev-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:600;background:rgba(8,10,16,.62);}
+.ev-modal[hidden]{display:none;}
+.ev-box{width:330px;max-width:92vw;padding:20px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--surface-2) 80%,transparent);border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.ev-box .ev-meta{font-size:12px;color:var(--text-dim);font-weight:700;letter-spacing:.4px;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.ev-box .ev-dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));flex:none;box-shadow:0 0 8px var(--mode-glow);}
+.ev-box .ev-label{font-size:12px;color:var(--text-dim);margin:10px 0 5px;font-weight:700;}
+.ev-box .ev-input,.ev-box .ev-note{width:100%;box-sizing:border-box;border-radius:11px;border:1px solid var(--border);background:color-mix(in srgb,var(--surface) 60%,transparent);color:var(--text);font-size:13px;padding:9px 11px;outline:none;transition:border-color .15s,box-shadow .15s;font-family:inherit;}
+.ev-box .ev-input:focus,.ev-box .ev-note:focus{border-color:var(--mode-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--mode-glow) 26%,transparent);}
+.ev-box .ev-note{resize:vertical;min-height:64px;}
+.ev-box .ev-actions{display:flex;gap:8px;margin-top:16px;}
+.ev-box .ev-actions .btn{flex:1;}
+.ev-box .ev-del{color:#ff6b6b;border-color:color-mix(in srgb,#ff6b6b 40%,var(--border));}
+.ev-box .ev-del:hover{background:color-mix(in srgb,#ff6b6b 18%,transparent);}
 
 </style>
 </head>
@@ -742,7 +763,6 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 
   <div class="shell">
   <nav class="rail full-only">
-    <span class="brand-mini"><i class="brand-dot"></i><b>FocusDeck</b></span>
     <button class="tab active" data-v="timer"><span class="ti">⏱</span><span class="tl">专注</span></button>
     <button class="tab" data-v="schedule"><span class="ti">📅</span><span class="tl">日程</span></button>
     <button class="tab" data-v="overview"><span class="ti">🏠</span><span class="tl">概览</span></button>
@@ -1201,6 +1221,24 @@ function gotoView(v){
    概览 / 日程 / 鼠标自动选择（四页仪表盘新增）
    ============================================================ */
 function fdEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+var SCH_DAYS = ['一','二','三','四','五','六','日'];
+var SCH_START = 6, SCH_END = 24;
+function evTitle(v){ if (v==null) return ''; return typeof v==='string' ? v : (v.t||''); }
+function evNote(v){ if (v==null) return ''; return typeof v==='string' ? '' : (v.n||''); }
+function evObj(v){ if (v==null) return {t:'',n:''}; return typeof v==='string' ? {t:v,n:''} : {t:v.t||'',n:v.n||''}; }
+function schedLabel(key){
+  var p = String(key).split('-'); if (p.length<2) return key;
+  var di = parseInt(p[0],10), h = parseInt(p[1],10);
+  return SCH_DAYS[di] + ' ' + (h<10?'0':'') + h + ':00';
+}
+function updateSchedNow(){
+  var nl = $('#schedNow'); if (!nl) return;
+  var now = new Date();
+  var curH = now.getHours() + now.getMinutes()/60;
+  if (curH < SCH_START || curH > SCH_END){ nl.style.display='none'; return; }
+  nl.style.display = 'block';
+  nl.style.top = (46 + (curH - SCH_START) * 46) + 'px';
+}
 
 function renderOverview(){
   if (!S) return;
@@ -1263,25 +1301,32 @@ function saveSchedule(){
 function renderSchedule(){
   var grid = $('#schedGrid'); if (!grid) return;
   if (!S.schedule) S.schedule = {};
-  var days = ['一','二','三','四','五','六','日'];
-  var startH = 6, endH = 24;
   var now = new Date();
   var nowDayIdx = (now.getDay()+6)%7;
-  var html = '<div class="sh"></div>' + days.map(function(d,i){ return '<div class="sh'+(i===nowDayIdx?' today':'')+'">'+d+'</div>'; }).join('');
-  for (var h=startH; h<=endH; h++){
+  var monday = new Date(now); monday.setDate(now.getDate() - nowDayIdx);
+  var html = '<div class="sh sh-corner"></div>' + SCH_DAYS.map(function(d,i){
+    var dt = new Date(monday); dt.setDate(monday.getDate()+i);
+    return '<div class="sh'+(i===nowDayIdx?' today':'')+'"><span class="sd">'+d+'</span><span class="sdn">'+(dt.getMonth()+1)+'/'+dt.getDate()+'</span></div>';
+  }).join('');
+  for (var h=SCH_START; h<=SCH_END; h++){
     html += '<div class="hr">'+(h<10?'0':'')+h+':00</div>';
     for (var di=0; di<7; di++){
-      html += '<div class="cell" data-key="'+di+'-'+h+'"></div>';
+      var key = di+'-'+h;
+      var cls = 'cell';
+      if (di===nowDayIdx) cls += ' cell--today';
+      if (di>=5) cls += ' cell--weekend';
+      html += '<div class="'+cls+'" data-key="'+key+'"></div>';
     }
   }
+  html += '<div class="nowline" id="schedNow" style="display:none"></div>';
   grid.innerHTML = html;
   var cells = grid.querySelectorAll('.cell');
-  /* 放置事件块 */
   cells.forEach(function(c){
     var key = c.getAttribute('data-key'), ev = S.schedule[key];
     if (ev){
       var el = document.createElement('div');
-      el.className = 'ev'; el.setAttribute('data-key', key); el.textContent = ev;
+      el.className = 'ev'; el.setAttribute('data-key', key);
+      el.innerHTML = '<span class="ev-title">'+fdEsc(evTitle(ev))+'</span>';
       c.appendChild(el);
       attachEventDrag(el, key);
     }
@@ -1293,17 +1338,18 @@ function renderSchedule(){
       var key = c.getAttribute('data-key');
       if (c.querySelector('input')) return;
       var inp = document.createElement('input');
-      inp.style.cssText = 'position:absolute;inset:3px;width:calc(100% - 6px);border:none;background:rgba(0,0,0,.45);color:#fff;font-size:10px;border-radius:6px;padding:0 6px;outline:none;z-index:5;';
+      inp.style.cssText = 'position:absolute;inset:3px;width:calc(100% - 6px);border:none;background:rgba(0,0,0,.5);color:#fff;font-size:10.5px;border-radius:8px;padding:0 9px;outline:none;z-index:5;';
       inp.placeholder = '事件';
       c.appendChild(inp); inp.focus();
-      function commit(){ var v = inp.value.trim(); if (v){ S.schedule[key] = v; } saveSchedule(); renderSchedule(); }
+      function commit(){ var v = inp.value.trim(); if (v){ S.schedule[key] = {t:v, n:''}; } saveSchedule(); renderSchedule(); }
       inp.addEventListener('keydown', function(ev2){ if (ev2.key==='Enter') commit(); else if (ev2.key==='Escape') renderSchedule(); });
       inp.addEventListener('blur', commit);
     });
   });
+  updateSchedNow();
 }
 
-/* 事件块拖拽：可在 周一~周日 / 6:00~24:00 任意格子间移动，落点写入 S.schedule 并持久化 */
+/* 事件块拖拽 + 点击查看详情：可在 周一~周日 / 6:00~24:00 任意格子间移动；未拖动则点击打开详情 */
 function attachEventDrag(el, key){
   el.addEventListener('mousedown', function(e){
     e.preventDefault(); e.stopPropagation();
@@ -1339,18 +1385,23 @@ function attachEventDrag(el, key){
       ghost.classList.remove('ev-drag');
       ghost.style.pointerEvents = '';
       ghost.style.zIndex = '';
+      ghost.style.position = '';
+      ghost.style.width = '';
+      ghost.style.height = '';
+      ghost.style.left = '';
+      ghost.style.top = '';
       if (lastCell) lastCell.classList.remove('cell-drop');
-      if (!moved){ renderSchedule(); return; }
+      if (!moved){ openEventDetail(key); return; }
       var under = document.elementFromPoint(ev.clientX, ev.clientY);
       var cell = under ? under.closest('.cell') : null;
       if (cell){
         var nk = cell.getAttribute('data-key');
         if (nk && nk !== key){
-          var txt = S.schedule[key];
+          var obj = evObj(S.schedule[key]);
           delete S.schedule[key];
-          S.schedule[nk] = txt;
+          S.schedule[nk] = obj;
           saveSchedule();
-          toast('已移动日程 → ' + nk.replace('-', ' '), '📅');
+          toast('已移动日程 → ' + schedLabel(nk), '📅');
         }
       }
       renderSchedule();
@@ -1364,6 +1415,43 @@ function attachEventDrag(el, key){
     delete S.schedule[k]; saveSchedule(); renderSchedule();
     toast('已删除事件', '🗑');
   });
+}
+/* 事件详情弹窗：点击事件查看/编辑标题与备注，可删除 */
+var _evKey = null;
+function openEventDetail(key){
+  var ev = S.schedule[key]; if (!ev) return;
+  _evKey = key;
+  var m = document.getElementById('evWhen'); if (m) m.textContent = schedLabel(key);
+  var t = document.getElementById('evTitle'); if (t) t.value = evTitle(ev);
+  var n = document.getElementById('evNote'); if (n) n.value = evNote(ev);
+  var box = document.getElementById('evModal'); if (box){ box.hidden = false; if (t) t.focus(); }
+}
+function closeEventDetail(){ var box = document.getElementById('evModal'); if (box) box.hidden = true; _evKey = null; }
+function saveEventDetail(){
+  if (!_evKey) return;
+  var t = document.getElementById('evTitle'), n = document.getElementById('evNote');
+  var title = t ? t.value.trim() : '', note = n ? n.value.trim() : '';
+  if (!title){ toast('标题不能为空', '⚠️'); return; }
+  S.schedule[_evKey] = { t: title, n: note };
+  saveSchedule(); closeEventDetail(); renderSchedule();
+}
+function deleteEventDetail(){
+  if (!_evKey) return;
+  delete S.schedule[_evKey]; saveSchedule(); closeEventDetail(); renderSchedule();
+  toast('已删除事件', '🗑');
+}
+function initEvModal(){
+  var box = document.getElementById('evModal'); if (!box) return;
+  box.addEventListener('click', function(e){
+    var a = e.target && e.target.dataset ? e.target.dataset.a : null;
+    if (a === 'ev-close') closeEventDetail();
+    else if (a === 'ev-save') saveEventDetail();
+    else if (a === 'ev-del') deleteEventDetail();
+  });
+  var t = document.getElementById('evTitle');
+  if (t) t.addEventListener('keydown', function(e){ if (e.key==='Enter'){ e.preventDefault(); saveEventDetail(); } else if (e.key==='Escape'){ e.preventDefault(); closeEventDetail(); } });
+  var n = document.getElementById('evNote');
+  if (n) n.addEventListener('keydown', function(e){ if (e.key==='Enter' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); saveEventDetail(); } else if (e.key==='Escape'){ e.preventDefault(); closeEventDetail(); } });
 }
 
 /* 鼠标移动自动选择（focus-follows-cursor）：仅作用于左侧导航页签，悬停即切换到该页；内容区不做自动选择 */
@@ -3505,6 +3593,8 @@ function main(){
 
   bind();
   attachFeedback();
+  initEvModal();
+  setInterval(updateSchedNow, 60000);
   boot(true);
   if (!isDesktop()) setTimeout(function(){ toast('在线试用版 · 数据仅保存在当前浏览器', '🧪'); }, 600);
 
@@ -3578,6 +3668,23 @@ else main();
         <div class="te-actions">
           <button class="btn btn-secondary" data-a="te-cancel">取消</button>
           <button class="btn btn-primary" data-a="te-save">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 日程事件详情弹窗 -->
+    <div class="ev-modal" id="evModal" hidden>
+      <div class="ev-backdrop" data-a="ev-close"></div>
+      <div class="ev-box">
+        <div class="ev-meta"><span class="ev-dot"></span><span id="evWhen">周一 06:00</span></div>
+        <div class="ev-label">标题</div>
+        <input type="text" class="ev-input" id="evTitle" maxlength="60" placeholder="事件标题…">
+        <div class="ev-label">备注</div>
+        <textarea class="ev-note" id="evNote" rows="3" maxlength="300" placeholder="备注（可选）"></textarea>
+        <div class="ev-actions">
+          <button class="btn btn-secondary ev-del" data-a="ev-del">删除</button>
+          <button class="btn btn-secondary" data-a="ev-close">取消</button>
+          <button class="btn btn-primary" data-a="ev-save">保存</button>
         </div>
       </div>
     </div>
