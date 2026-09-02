@@ -695,25 +695,26 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .mini-task.done .mtx{text-decoration:line-through;color:var(--text-dim);}
 .mini-empty{font-size:12px;color:var(--text-dim);padding:8px 2px;}
 /* 日程：课程表式周视图（清爽美化版） */
-.sched{position:relative;display:grid;grid-template-columns:56px repeat(7,1fr);grid-auto-rows:46px;gap:5px;overflow:auto;padding-bottom:8px;}
-.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:7px 0;border-radius:12px;z-index:3;display:flex;flex-direction:column;gap:2px;justify-content:center;transition:background .15s,color .15s;}
+.sched{position:relative;display:grid;grid-template-columns:56px repeat(7,1fr);grid-auto-rows:46px;gap:6px;overflow:auto;padding:9px;border-radius:26px;background:color-mix(in srgb,var(--surface-2) 16%,transparent);border:1px solid var(--border);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--surface-2) 22%,transparent);}
+.sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:7px 0;border-radius:14px;z-index:3;display:flex;flex-direction:column;gap:2px;justify-content:center;transition:background .15s,color .15s;}
 .sched .sh .sd{font-size:12.5px;color:var(--text);font-weight:800;line-height:1;}
 .sched .sh .sdn{font-size:9px;color:var(--text-dim);line-height:1;}
 .sched .sh.today{background:color-mix(in srgb,var(--mode-accent) 20%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 40%,transparent);}
 .sched .sh.today .sd{color:var(--mode-accent);}
 .sched .sh-corner{background:transparent;}
-.sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-variant-numeric:tabular-nums;}
-.sched .cell{border-radius:12px;background:color-mix(in srgb,var(--surface-2) 32%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;position:relative;overflow:hidden;}
+.sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-variant-numeric:tabular-nums;border-radius:12px;background:color-mix(in srgb,var(--surface-2) 30%,transparent);}
+.sched .cell{border-radius:16px;background:color-mix(in srgb,var(--surface-2) 32%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;position:relative;overflow:hidden;}
 .sched .cell:hover{background:rgba(255,255,255,0.07);border-color:color-mix(in srgb,var(--mode-accent) 44%,var(--border));transform:translateY(-1px);}
 .sched .cell--weekend{background:color-mix(in srgb,var(--surface-2) 20%,transparent);}
 .sched .cell--today{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%,transparent);}
 .sched .cell-drop{outline:2px dashed var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 22%,transparent)!important;transform:none;}
-.sched .ev{position:absolute;inset:3px;border-radius:10px;padding:5px 10px;font-size:10.5px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 5px 14px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;display:flex;align-items:center;transition:box-shadow .15s,transform .15s;}
-.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.7);border-radius:10px 0 0 10px;}
+.sched .cell-swap{outline:2px solid var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 30%,transparent)!important;transform:none;}
+.sched .ev{position:absolute;inset:3px;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 5px 14px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;display:flex;align-items:center;transition:box-shadow .15s,transform .15s;}
+.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:rgba(255,255,255,.7);border-radius:999px 0 0 999px;}
 .sched .ev .ev-title{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;}
 .sched .ev:hover{transform:translateY(-1px);box-shadow:0 8px 20px color-mix(in srgb,var(--mode-glow) 56%,transparent);}
 .sched .ev.ev-drag{cursor:grabbing;box-shadow:0 16px 34px color-mix(in srgb,var(--mode-glow) 66%,transparent);opacity:.96;transform:scale(1.03);}
-.sched .nowline{position:absolute;left:56px;right:6px;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;z-index:2;pointer-events:none;display:none;}
+.sched .nowline{position:absolute;left:70px;right:9px;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;z-index:2;pointer-events:none;display:none;}
 .sched .nowline::before{content:'现在';position:absolute;left:0;top:-15px;font-size:9px;color:#ff5630;font-weight:700;}
 
 /* 日程事件详情弹窗（点击事件查看/编辑信息） */
@@ -1066,7 +1067,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
     <section class="view" id="v-schedule" style="gap:12px;">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <h3 style="font-size:14px;color:var(--text);font-weight:800">📅 课程表式周视图</h3>
-        <span style="font-size:11px;color:var(--text-dim)">点击空格添加 · 拖动事件改时间 · 双击删除</span>
+        <span style="font-size:11px;color:var(--text-dim)">点击空格添加 · 拖动改时间（拖到已有事件会交换）· 双击删除</span>
       </div>
       <div class="sched" id="schedGrid"></div>
     </section>
@@ -1222,7 +1223,7 @@ function gotoView(v){
    ============================================================ */
 function fdEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 var SCH_DAYS = ['一','二','三','四','五','六','日'];
-var SCH_START = 6, SCH_END = 24;
+var SCH_START = 8, SCH_END = 24;
 function evTitle(v){ if (v==null) return ''; return typeof v==='string' ? v : (v.t||''); }
 function evNote(v){ if (v==null) return ''; return typeof v==='string' ? '' : (v.n||''); }
 function evObj(v){ if (v==null) return {t:'',n:''}; return typeof v==='string' ? {t:v,n:''} : {t:v.t||'',n:v.n||''}; }
@@ -1237,7 +1238,7 @@ function updateSchedNow(){
   var curH = now.getHours() + now.getMinutes()/60;
   if (curH < SCH_START || curH > SCH_END){ nl.style.display='none'; return; }
   nl.style.display = 'block';
-  nl.style.top = (46 + (curH - SCH_START) * 46) + 'px';
+  nl.style.top = (9 + 46 + (curH - SCH_START) * 46) + 'px';
 }
 
 function renderOverview(){
@@ -1338,7 +1339,7 @@ function renderSchedule(){
       var key = c.getAttribute('data-key');
       if (c.querySelector('input')) return;
       var inp = document.createElement('input');
-      inp.style.cssText = 'position:absolute;inset:3px;width:calc(100% - 6px);border:none;background:rgba(0,0,0,.5);color:#fff;font-size:10.5px;border-radius:8px;padding:0 9px;outline:none;z-index:5;';
+      inp.style.cssText = 'position:absolute;inset:3px;width:calc(100% - 6px);border:none;background:rgba(0,0,0,.5);color:#fff;font-size:10.5px;border-radius:10px;padding:0 9px;outline:none;z-index:5;';
       inp.placeholder = '事件';
       c.appendChild(inp); inp.focus();
       function commit(){ var v = inp.value.trim(); if (v){ S.schedule[key] = {t:v, n:''}; } saveSchedule(); renderSchedule(); }
@@ -1349,7 +1350,7 @@ function renderSchedule(){
   updateSchedNow();
 }
 
-/* 事件块拖拽 + 点击查看详情：可在 周一~周日 / 6:00~24:00 任意格子间移动；未拖动则点击打开详情 */
+/* 事件块拖拽 + 点击查看详情：可在 周一~周日 / 8:00~24:00 任意格子间移动；拖到已占用格→交换，未拖动则点击打开详情 */
 function attachEventDrag(el, key){
   el.addEventListener('mousedown', function(e){
     e.preventDefault(); e.stopPropagation();
@@ -1374,8 +1375,11 @@ function attachEventDrag(el, key){
       var under = document.elementFromPoint(ev.clientX, ev.clientY);
       var cell = under ? under.closest('.cell') : null;
       if (cell !== lastCell){
-        if (lastCell) lastCell.classList.remove('cell-drop');
-        if (cell) cell.classList.add('cell-drop');
+        if (lastCell){ lastCell.classList.remove('cell-drop'); lastCell.classList.remove('cell-swap'); }
+        if (cell){
+          var occupied = !!S.schedule[cell.getAttribute('data-key')];
+          cell.classList.add(occupied ? 'cell-swap' : 'cell-drop');
+        }
         lastCell = cell;
       }
     }
@@ -1390,7 +1394,7 @@ function attachEventDrag(el, key){
       ghost.style.height = '';
       ghost.style.left = '';
       ghost.style.top = '';
-      if (lastCell) lastCell.classList.remove('cell-drop');
+      if (lastCell){ lastCell.classList.remove('cell-drop'); lastCell.classList.remove('cell-swap'); }
       if (!moved){ openEventDetail(key); return; }
       var under = document.elementFromPoint(ev.clientX, ev.clientY);
       var cell = under ? under.closest('.cell') : null;
@@ -1398,10 +1402,18 @@ function attachEventDrag(el, key){
         var nk = cell.getAttribute('data-key');
         if (nk && nk !== key){
           var obj = evObj(S.schedule[key]);
-          delete S.schedule[key];
-          S.schedule[nk] = obj;
+          var occ = S.schedule[nk];            // 目标格原有事件（可能为空）
+          if (occ){
+            // 目标已占用 → 交换两个事件，谁都不丢
+            S.schedule[key] = (typeof occ === 'string') ? {t:occ, n:''} : occ;
+            S.schedule[nk] = obj;
+            toast('已交换日程 ↔ ' + schedLabel(nk), '📅');
+          } else {
+            delete S.schedule[key];
+            S.schedule[nk] = obj;
+            toast('已移动日程 → ' + schedLabel(nk), '📅');
+          }
           saveSchedule();
-          toast('已移动日程 → ' + schedLabel(nk), '📅');
         }
       }
       renderSchedule();
