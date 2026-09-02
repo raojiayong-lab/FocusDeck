@@ -641,9 +641,11 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 /* ===== 四页仪表盘：外壳 / 玻璃导航栏（深色玻璃，不用 backdrop-filter 压动画光晕，保流畅） ===== */
 .shell{display:flex;flex:1;min-height:0;}
 .rail{
-  flex:none;width:112px;display:flex;flex-direction:column;gap:6px;
-  padding:12px 9px;background:color-mix(in srgb,var(--surface-2) 50%,transparent);
+  flex:none;width:120px;display:flex;flex-direction:column;gap:8px;
+  padding:16px 10px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--surface-2) 62%,transparent),color-mix(in srgb,var(--surface-2) 34%,transparent));
   border-right:1px solid var(--border);
+  box-shadow:1px 0 0 color-mix(in srgb,var(--mode-glow) 14%,transparent);
 }
 .rail .brand-mini{display:flex;align-items:center;gap:7px;font-weight:800;font-size:12px;letter-spacing:.5px;color:var(--text);padding:2px 4px 10px;white-space:nowrap;overflow:hidden;}
 .rail .brand-mini .brand-dot{width:9px;height:9px;flex:none;}
@@ -654,13 +656,15 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
   background:transparent;border:1px solid transparent;
   transition:color .22s ease, background .22s ease, transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease, border-color .22s ease;
 }
-.rail .tab .ti{font-size:18px;line-height:1;}
-.rail .tab .tl{white-space:nowrap;}
-.rail .tab:hover{color:var(--text);background:rgba(255,255,255,0.05);transform:translateY(-1px);}
+.rail .tab .ti{font-size:19px;line-height:1;font-weight:600;}
+.rail .tab .tl{white-space:nowrap;font-weight:600;letter-spacing:.3px;}
+.rail .tab{cursor:pointer;}
+.rail .tab:hover{color:var(--text);background:rgba(255,255,255,0.06);transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.25);}
 .rail .tab.active{
-  color:var(--mode-accent);background:color-mix(in srgb,var(--mode-accent) 14%,transparent);
-  border-color:color-mix(in srgb,var(--mode-accent) 30%,transparent);
-  box-shadow:0 6px 18px color-mix(in srgb,var(--mode-glow) 42%,transparent);
+  color:var(--mode-accent);background:color-mix(in srgb,var(--mode-accent) 16%,transparent);
+  border-color:color-mix(in srgb,var(--mode-accent) 34%,transparent);
+  box-shadow:0 8px 22px color-mix(in srgb,var(--mode-glow) 46%,transparent);
+  transform:translateY(-1px);
 }
 .tab-ind.v{top:0;left:0;bottom:auto;width:3px;height:25%;border-radius:3px;transform:translateY(0);}
 /* 激活页可滚动（长页面：统计/待办/概览/日程） */
@@ -680,9 +684,11 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .ring-svg .rf{fill:none;stroke:var(--mode-accent);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 6px var(--mode-glow));}
 .ring-txt b{display:block;font-size:22px;color:var(--text);font-weight:800;}
 .ring-txt{font-size:13px;color:var(--text-dim);}
-/* 鼠标自动选择高亮（focus-follows-cursor） */
+/* 鼠标自动选择高亮（focus-follows-cursor，仅导航页签触发；内容卡仅做悬停微交互） */
 .auto-sel{transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease;}
 .auto-sel.sel{box-shadow:0 0 0 2px var(--mode-accent),0 8px 26px color-mix(in srgb,var(--mode-glow) 50%,transparent);transform:translateY(-2px);border-color:var(--mode-accent);}
+.ov-card,.metric{transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,border-color .2s ease;}
+.ov-card:hover,.metric:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--mode-accent) 36%,var(--border));box-shadow:0 12px 32px color-mix(in srgb,var(--mode-glow) 30%,transparent);}
 /* 概览：进行中任务 */
 .mini-tasks{display:flex;flex-direction:column;gap:8px;}
 .mini-task{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:12px;background:color-mix(in srgb,var(--surface-2) 42%,transparent);border:1px solid var(--border);transition:background .15s;}
@@ -695,9 +701,12 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 .sched .sh{font-size:11px;color:var(--text-dim);text-align:center;font-weight:700;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:2;}
 .sched .sh.today{color:var(--mode-accent);}
 .sched .hr{font-size:10px;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:6px;}
-.sched .cell{border-radius:9px;background:color-mix(in srgb,var(--surface-2) 40%,transparent);border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s;position:relative;overflow:hidden;}
-.sched .cell:hover{background:rgba(255,255,255,0.06);border-color:var(--border);}
-.sched .ev{position:absolute;inset:2px;border-radius:7px;padding:2px 6px;font-size:10px;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 3px 10px color-mix(in srgb,var(--mode-glow) 40%,transparent);cursor:pointer;}
+.sched .cell{border-radius:10px;background:color-mix(in srgb,var(--surface-2) 38%,transparent);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.sched .cell:hover{background:rgba(255,255,255,0.07);border-color:color-mix(in srgb,var(--mode-accent) 42%,var(--border));}
+.sched .cell-drop{outline:2px dashed var(--mode-accent);outline-offset:-3px;background:color-mix(in srgb,var(--mode-accent) 18%,transparent)!important;}
+.sched .ev{position:absolute;inset:3px;border-radius:8px;padding:3px 8px;font-size:10px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:linear-gradient(135deg,var(--mode-accent),var(--mode-glow));box-shadow:0 4px 12px color-mix(in srgb,var(--mode-glow) 46%,transparent);cursor:grab;user-select:none;}
+.sched .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.65);border-radius:8px 0 0 8px;}
+.sched .ev.ev-drag{cursor:grabbing;box-shadow:0 14px 30px color-mix(in srgb,var(--mode-glow) 64%,transparent);opacity:.96;}
 .sched .nowline{grid-column:2 / span 7;height:0;border-top:2px solid #ff5630;box-shadow:0 0 8px #ff5630;position:relative;margin:0;}
 .sched .nowline::before{content:'现在';position:absolute;left:2px;top:-15px;font-size:9px;color:#ff5630;font-weight:700;}
 
@@ -734,10 +743,10 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
   <div class="shell">
   <nav class="rail full-only">
     <span class="brand-mini"><i class="brand-dot"></i><b>FocusDeck</b></span>
-    <button class="tab active" data-v="overview"><span class="ti">🏠</span><span class="tl">概览</span></button>
-    <button class="tab" data-v="todo"><span class="ti">✓</span><span class="tl">任务</span><span class="badge" id="todoBadge">0</span></button>
-    <button class="tab" data-v="timer"><span class="ti">⏱</span><span class="tl">专注</span></button>
+    <button class="tab active" data-v="timer"><span class="ti">⏱</span><span class="tl">专注</span></button>
     <button class="tab" data-v="schedule"><span class="ti">📅</span><span class="tl">日程</span></button>
+    <button class="tab" data-v="overview"><span class="ti">🏠</span><span class="tl">概览</span></button>
+    <button class="tab" data-v="todo"><span class="ti">✓</span><span class="tl">任务</span><span class="badge" id="todoBadge">0</span></button>
     <span class="sp"></span>
     <button class="tab" data-v="settings"><span class="ti">⚙</span><span class="tl">设置</span></button>
     <span class="tab-ind v" id="tabInd"></span>
@@ -745,7 +754,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
 
   <main class="body">
     <!-- 计时 -->
-    <section class="view" id="v-timer">
+    <section class="view active" id="v-timer">
       <div class="focus-music">
         <div class="fm-row">
           <button class="focus-music-btn k-round" id="kitchenTopBtn" title="厨房计时">🍳</button>
@@ -1009,10 +1018,10 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
     </section>
 
     <!-- 概览 -->
-    <section class="view active" id="v-overview" style="gap:14px;">
+    <section class="view" id="v-overview" style="gap:14px;">
       <div class="ov-grid" id="ovMetrics"></div>
       <div class="ov-row">
-        <div class="ov-card auto-sel" style="flex:none;min-width:260px">
+        <div class="ov-card" style="flex:none;min-width:260px">
           <h3>🎯 今日目标完成度</h3>
           <div class="ring-wrap">
             <svg class="ring-svg" viewBox="0 0 120 120">
@@ -1022,12 +1031,12 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
             <div class="ring-txt"><b id="ovRingPct">0%</b><span id="ovRingSub">0 / 8 🍅</span></div>
           </div>
         </div>
-        <div class="ov-card auto-sel" style="flex:2">
+        <div class="ov-card" style="flex:2">
           <h3>⚡ 进行中的任务</h3>
           <div class="mini-tasks" id="ovTasks"></div>
         </div>
       </div>
-      <div class="ov-card auto-sel">
+      <div class="ov-card">
         <h3>📈 本周专注（近 7 日）</h3>
         <div class="chart7" id="ovChart7"></div>
       </div>
@@ -1037,7 +1046,7 @@ html.no-color-mix{--glass:rgba(29,34,49,0.97);--glass-strong:rgba(38,44,63,0.98)
     <section class="view" id="v-schedule" style="gap:12px;">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <h3 style="font-size:14px;color:var(--text);font-weight:800">📅 课程表式周视图</h3>
-        <span style="font-size:11px;color:var(--text-dim)">点击空格添加事件 · 点击事件可删除</span>
+        <span style="font-size:11px;color:var(--text-dim)">点击空格添加 · 拖动事件改时间 · 双击删除</span>
       </div>
       <div class="sched" id="schedGrid"></div>
     </section>
@@ -1209,7 +1218,7 @@ function renderOverview(){
   ];
   var box = $('#ovMetrics');
   if (box) box.innerHTML = metrics.map(function(m){
-    return '<div class="metric auto-sel"><div class="mic">'+m.ic+'</div><div class="mv">'+m.v+'</div><div class="ml">'+m.l+'</div></div>';
+    return '<div class="metric"><div class="mic">'+m.ic+'</div><div class="mv">'+m.v+'</div><div class="ml">'+m.l+'</div></div>';
   }).join('');
   var pct = Math.min(100, Math.round(pomo/goal*100));
   var ring = $('#ovRing');
@@ -1262,36 +1271,109 @@ function renderSchedule(){
   for (var h=startH; h<=endH; h++){
     html += '<div class="hr">'+(h<10?'0':'')+h+':00</div>';
     for (var di=0; di<7; di++){
-      var key = di+'-'+h, ev = S.schedule[key];
-      html += '<div class="cell" data-key="'+key+'">'+(ev?'<div class="ev" data-key="'+key+'">'+fdEsc(ev)+'</div>':'')+'</div>';
+      html += '<div class="cell" data-key="'+di+'-'+h+'"></div>';
     }
   }
   grid.innerHTML = html;
-  grid.querySelectorAll('.cell').forEach(function(c){
+  var cells = grid.querySelectorAll('.cell');
+  /* 放置事件块 */
+  cells.forEach(function(c){
+    var key = c.getAttribute('data-key'), ev = S.schedule[key];
+    if (ev){
+      var el = document.createElement('div');
+      el.className = 'ev'; el.setAttribute('data-key', key); el.textContent = ev;
+      c.appendChild(el);
+      attachEventDrag(el, key);
+    }
+  });
+  /* 空格点击添加事件 */
+  cells.forEach(function(c){
     c.addEventListener('click', function(e){
+      if (e.target.classList.contains('ev')) return;
       var key = c.getAttribute('data-key');
-      if (e.target.classList.contains('ev')){ delete S.schedule[key]; saveSchedule(); renderSchedule(); return; }
       if (c.querySelector('input')) return;
       var inp = document.createElement('input');
-      inp.style.cssText = 'position:absolute;inset:2px;width:calc(100% - 4px);border:none;background:rgba(0,0,0,.4);color:#fff;font-size:10px;border-radius:6px;padding:0 5px;outline:none;';
+      inp.style.cssText = 'position:absolute;inset:3px;width:calc(100% - 6px);border:none;background:rgba(0,0,0,.45);color:#fff;font-size:10px;border-radius:6px;padding:0 6px;outline:none;z-index:5;';
       inp.placeholder = '事件';
       c.appendChild(inp); inp.focus();
-      function commit(){ var v = inp.value.trim(); if (v) S.schedule[key] = v; saveSchedule(); renderSchedule(); }
+      function commit(){ var v = inp.value.trim(); if (v){ S.schedule[key] = v; } saveSchedule(); renderSchedule(); }
       inp.addEventListener('keydown', function(ev2){ if (ev2.key==='Enter') commit(); else if (ev2.key==='Escape') renderSchedule(); });
       inp.addEventListener('blur', commit);
     });
   });
 }
 
-/* 鼠标移动自动选择（focus-follows-cursor）：rAF 节流，更新 .auto-sel.sel 高亮 */
+/* 事件块拖拽：可在 周一~周日 / 6:00~24:00 任意格子间移动，落点写入 S.schedule 并持久化 */
+function attachEventDrag(el, key){
+  el.addEventListener('mousedown', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var startX = e.clientX, startY = e.clientY, moved = false;
+    var rect = el.getBoundingClientRect();
+    var w = rect.width, hgt = rect.height;
+    var ghost = el;
+    ghost.style.pointerEvents = 'none';
+    ghost.style.zIndex = '999';
+    ghost.style.position = 'fixed';
+    ghost.style.width = w + 'px';
+    ghost.style.height = hgt + 'px';
+    ghost.style.left = rect.left + 'px';
+    ghost.style.top = rect.top + 'px';
+    ghost.classList.add('ev-drag');
+    var lastCell = null;
+    function onMove(ev){
+      var dx = ev.clientX - startX, dy = ev.clientY - startY;
+      if (!moved && Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+      ghost.style.left = (rect.left + dx) + 'px';
+      ghost.style.top = (rect.top + dy) + 'px';
+      var under = document.elementFromPoint(ev.clientX, ev.clientY);
+      var cell = under ? under.closest('.cell') : null;
+      if (cell !== lastCell){
+        if (lastCell) lastCell.classList.remove('cell-drop');
+        if (cell) cell.classList.add('cell-drop');
+        lastCell = cell;
+      }
+    }
+    function onUp(ev){
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      ghost.classList.remove('ev-drag');
+      ghost.style.pointerEvents = '';
+      ghost.style.zIndex = '';
+      if (lastCell) lastCell.classList.remove('cell-drop');
+      if (!moved){ renderSchedule(); return; }
+      var under = document.elementFromPoint(ev.clientX, ev.clientY);
+      var cell = under ? under.closest('.cell') : null;
+      if (cell){
+        var nk = cell.getAttribute('data-key');
+        if (nk && nk !== key){
+          var txt = S.schedule[key];
+          delete S.schedule[key];
+          S.schedule[nk] = txt;
+          saveSchedule();
+          toast('已移动日程 → ' + nk.replace('-', ' '), '📅');
+        }
+      }
+      renderSchedule();
+    }
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+  el.addEventListener('dblclick', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var k = el.getAttribute('data-key');
+    delete S.schedule[k]; saveSchedule(); renderSchedule();
+    toast('已删除事件', '🗑');
+  });
+}
+
+/* 鼠标移动自动选择（focus-follows-cursor）：仅作用于左侧导航页签，悬停即切换到该页；内容区不做自动选择 */
 var _asRAF = null, _asX = 0, _asY = 0;
 window.addEventListener('mousemove', function(e){ _asX = e.clientX; _asY = e.clientY; if (!_asRAF) _asRAF = requestAnimationFrame(applyAutoSel); }, {passive:true});
 function applyAutoSel(){
   _asRAF = null;
   var el = document.elementFromPoint(_asX, _asY);
-  var card = el ? el.closest('.auto-sel') : null;
-  document.querySelectorAll('.auto-sel.sel').forEach(function(x){ if (x !== card) x.classList.remove('sel'); });
-  if (card) card.classList.add('sel');
+  var tab = el ? el.closest('.rail .tab') : null;
+  if (tab && !tab.classList.contains('active')) gotoView(tab.getAttribute('data-v'));
 }
 
 /* ============================================================
@@ -3424,6 +3506,7 @@ function main(){
   bind();
   attachFeedback();
   boot(true);
+  if (!isDesktop()) setTimeout(function(){ toast('在线试用版 · 数据仅保存在当前浏览器', '🧪'); }, 600);
 
   var _initDone = false;
   function initDesktop(){
