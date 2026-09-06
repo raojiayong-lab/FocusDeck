@@ -14,9 +14,24 @@ node_modules/
 # ----- Dev / debug scratch files -----
 _*.*
 test_ui.py
+test_apicrash.py
+test_ctypes2.py
+test_ctypes3.py
 _test_multi*
 *.log
 index.legacy.html
+
+# ----- Packaged portable build (distributed via Releases, not in git) -----
+FocusDeck_portable/
+
+# ----- Local diagnostic / handover reports (kept on disk only) -----
+*诊断报告*.md
+*复盘*.md
+*发布说明*.md
+*交接*.md
+*优化任务简报*.md
+*最终交付任务书*.md
+*代码与交接说明*.md
 
 # ----- Screenshots (kept locally only) -----
 *.png
