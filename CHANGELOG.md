@@ -4,6 +4,15 @@
 
 ---
 
+## [2.0.1] - 2026-09-07
+
+### 🌐 部署（Web）
+- **在线试用网页版（GitHub Pages）同步至 2.0**：`gh-pages/index.html` 现与桌面版同源（同一份 `index.html`，无 `pywebview` 时 `api()` 全部降级、状态走 `localStorage`），不再是旧 v1.0。
+- 落地页 `release/index.html` 版本标注更新为 v2.0，下载按钮指向 Releases（含 v2.0 的 `.exe` / 完整包）；`release/app.html` 更新为 2.0 网页版。
+- README「在线试用」小节标注已同步 2.0。
+
+---
+
 ## [2.0.0] - 2026-09-06
 
 ### ✨ 新增（New Features）

@@ -55,7 +55,7 @@ FocusDeck 是一个基于 [pywebview](https://github.com/r0x0r/pywebview) + Edge
 
 > 想直接体验网页版？用浏览器打开仓库里的 `index.html`，核心界面即可运行（音乐 / 导出等依赖本地文件的功能在浏览器中受限）。
 
-## 🌐 在线试用（GitHub Pages）
+## 🌐 在线试用（GitHub Pages · 已同步 2.0）
 
 不用下载，浏览器直接体验完整界面（数据仅保存在你当前浏览器）：
 
